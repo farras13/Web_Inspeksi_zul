@@ -13,13 +13,18 @@ class Model extends CI_Model {
         $this->db->where($w);
         return $this->db->get($t);
     }
+    public function getWL($table,$title)
+    {
+        $this->db->order_by($title, 'desc'); 
+        return $this->db->get($table);
+    }
     public function insData($t, $object)
     {
         $this->db->insert($t, $object);
     }
-    public function updData($t, $object)
+    public function updData($t, $object, $w)
     {
-       $this->db->update($t, $object);
+       $this->db->update($t, $object, $w);
     }
     public function delData($t,$w)
     {
