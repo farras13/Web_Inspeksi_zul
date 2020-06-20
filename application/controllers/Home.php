@@ -18,34 +18,36 @@ class Home extends CI_Controller
 
 	public function index()
 	{
+		$data['jdl'] = $this->m->getData('jadwal')->result();
+		// $data['pj'] = $this->m->getData('penanggung_jawab')->result();
 		$this->load->view('template/header');
-		$this->load->view('dashboard');
+		$this->load->view('dashboard',$data);
 		$this->load->view('template/footer');
 	}
 
 	public function Jadwal()
 	{
 		$data['tbl'] = $this->m->getData('jadwal')->result();
-		$data['pj'] = $this->m->getData('penanggung_jawab')->result();
+		// $data['pj'] = $this->m->getData('penanggung_jawab')->result();
 		$this->load->view('template/header');
-		$this->load->view('home', $data);
+		$this->load->view('jadwal', $data);
 		$this->load->view('template/footer');
 	}
 
 	public function ins_jdl()
 	{
 		$objek = array(
-			'jadwal' => $this->input->post('jdl'),
-			'tanggal_inspeksi' => $this->input->post('tgl')
+			'keterangan' => $this->input->post('jdl'),
+			'jadwal' => $this->input->post('tgl')
 		);
 		$this->m->insData('jadwal', $objek);
 		$s = $this->m->getWL('jadwal', 'id_jadwal')->row();
 
-		$ob = array(
-			'id_jadwal' => $s->id_jadwal,
-			'nama' => $this->input->post('name')
-		);
-		$this->m->insData('penanggung_jawab', $ob);
+		// $ob = array(
+		// 	'id_jadwal' => $s->id_jadwal,
+		// 	'nama' => $this->input->post('name')
+		// );
+		// $this->m->insData('penanggung_jawab', $ob);
 		redirect('Home/jadwal', 'refresh');
 	}
 
@@ -54,8 +56,8 @@ class Home extends CI_Controller
 		$id = $this->input->post('id');
 		
 		$objek = array(
-			'jadwal' => $this->input->post('jdl'),
-			'tanggal_inspeksi' => $this->input->post('tgl')
+			'keterangan' => $this->input->post('jdl'),
+			'jadwal' => $this->input->post('tgl')
 		);
 		$this->m->updData('jadwal', $objek, ['id_jadwal' => $id]);
 		$s = $this->m->getWL('jadwal', 'id_jadwal')->row();
@@ -63,7 +65,7 @@ class Home extends CI_Controller
 		$ob = array(
 			'nama' => $this->input->post('name')
 		);
-		$this->m->updData('penanggung_jawab', $ob, ['id_jadwal' => $id]);
+		// $this->m->updData('penanggung_jawab', $ob, ['id_jadwal' => $id]);
 		redirect('Home/jadwal', 'refresh');
 	}
 	public function del_jdl()

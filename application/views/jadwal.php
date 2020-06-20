@@ -8,6 +8,7 @@
                     <h3 class="title-5 m-b-35">data table</h3>
                     <div class="table-data__tool">
                         <div class="table-data__tool-left">
+                            <form action="">
                             <div class="rs-select2--light rs-select2--md">
                                 <select class="js-select2" name="property">
                                     <option selected="selected">All Properties</option>
@@ -18,7 +19,7 @@
                             </div>
                             <div class="rs-select2--light rs-select2--sm">
                                 <select class="js-select2" name="time">
-                                    <option selected="selected">Today</option>
+                                    <option value="<?= date('Y-m-d'); ?>">Today</option>
                                     <option value="">3 Days</option>
                                     <option value="">1 Week</option>
                                 </select>
@@ -26,6 +27,7 @@
                             </div>
                             <button class="au-btn-filter">
                                 <i class="zmdi zmdi-filter-list"></i>filters</button>
+                            </form>
                         </div>
                         <div class="table-data__tool-right">
                             <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#newSubMenuModal">
@@ -45,36 +47,26 @@
                         <table class="table table-data2">
                             <thead>
                                 <tr>
-                                    <th>
-                                        <label class="au-checkbox">
-                                            <input type="checkbox">
-                                            <span class="au-checkmark"></span>
-                                        </label>
-                                    </th>
+                                    <th>#</th>
                                     <th>Kategori</th>
-                                    <th>Penanggung Jawab</th>
+                                    <!-- <th>Penanggung Jawab</th> -->
                                     <th>date</th>
                                     <th>status</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($tbl as $t): ?>
+                                <?php $n = 1; foreach($tbl as $t): ?>
                                 <tr class="tr-shadow">
-                                    <td>
-                                        <label class="au-checkbox">
-                                            <input type="checkbox">
-                                            <span class="au-checkmark"></span>
-                                        </label>
-                                    </td>
-                                    <td><?= $t->jadwal; ?></td>
-                                    <td>
+                                    <td><?= $n; ?></td>
+                                    <td><?= $t->keterangan; ?></td>
+                                    <!-- <td>
                                     <?php foreach($pj as $p): if($t->id_jadwal == $p->id_jadwal):?>
                                         <span class="block-email"><?= $p->nama; ?></span>
                                     <?php endif; endforeach; ?>
-                                    </td>
+                                    </td> -->
                                     <!-- <td class="desc">Samsung S8 Black</td> -->
-                                    <td class="desc"><?= $t->tanggal_inspeksi; ?></td>
+                                    <td class="desc"><?= $t->jadwal; ?></td>
                                     <td>
                                         <span class="status--process">Processed</span>
                                     </td>
@@ -95,7 +87,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <?php endforeach; ?>
+                                <?php $n++; endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -157,29 +149,29 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <input type="text" name="id" value="<?= $t->id_jadwal;?>" hidden>
-                                        <input type="date" class="form-control" id="tgl" name="tgl"  min="<?= date('Y-m-d'); ?>" value="<?= $t->tanggal_inspeksi;?>">
+                                        <input type="date" class="form-control" id="tgl" name="tgl"  min="<?= date('Y-m-d'); ?>" value="<?= $t->jadwal;?>">
                                     </div>
                                     <div class="form-group">
                                         <select name="jdl" id="jdl" class="form-control">
-                                            <?php if($t->jadwal == "Apar"):?>
+                                            <?php if($t->keterangan == "Apar"):?>
                                                 <option value="Apar" selected>Apar</option>
                                                 <option value="Detektor">Detektor</option>
                                                 <option value="Hidran">Hidran</option>
                                                 <option value="P3K">P3K</option>
                                                 <option value="SHK">SHK</option> 
-                                            <?php elseif($t->jadwal == "Detektor"): ?>
+                                            <?php elseif($t->keterangan == "Detektor"): ?>
                                                 <option value="Apar">Apar</option>
                                                 <option value="Detektor" selected>Detektor</option>
                                                 <option value="Hidran">Hidran</option>
                                                 <option value="P3K">P3K</option>
                                                 <option value="SHK">SHK</option>
-                                            <?php elseif($t->jadwal == "Hidran"): ?>
+                                            <?php elseif($t->keterangan == "Hidran"): ?>
                                                 <option value="Apar">Apar</option>
                                                 <option value="Detektor">Detektor</option>
                                                 <option value="Hidran" selected>Hidran</option>
                                                 <option value="P3K">P3K</option>
                                                 <option value="SHK">SHK</option>
-                                            <?php elseif($t->jadwal == "P3k"): ?>
+                                            <?php elseif($t->keterangan == "P3k"): ?>
                                                 <option value="Apar">Apar</option>
                                                 <option value="Detektor">Detektor</option>
                                                 <option value="Hidran">Hidran</option>
@@ -194,11 +186,11 @@
                                             <?php endif;?>
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <?php foreach($pj as $p): if($t->id_jadwal == $p->id_jadwal):?>
                                         <input type="text" class="form-control" id="name" name="name" value="<?=$p->nama;?>">
                                         <?php endif; endforeach;?>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

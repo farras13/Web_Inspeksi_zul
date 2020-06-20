@@ -29,7 +29,8 @@
     <link href="<?= base_url() ?>assets/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="<?= base_url() ?>assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="<?= base_url() ?>assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
+    <!-- FullCalendar -->
+    <link href='<?= base_url() ?>assets/vendor/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
     <!-- Main CSS-->
     <link href="<?= base_url() ?>assets/css/theme.css" rel="stylesheet" media="all">
 
@@ -49,25 +50,42 @@
                     <div class="header__navbar">
                         <ul class="list-unstyled">
                             <li class="has-sub">
-                                <a href="<?=base_url('home')?>">
+                                <a href="<?= base_url('home') ?>">
                                     <i class="fas fa-tachometer-alt"></i>Dashboard
                                     <span class="bot-line"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="<?=base_url('home/jadwal')?>">
+                                <a href="<?= base_url('home/jadwal') ?>">
                                     <i class="fas fa-shopping-basket"></i>
                                     <span class="bot-line"></span>Jadwal</a>
                             </li>
                             <li>
-                                <a href="table.html">
+                                <a href="<?= base_url('inspeksi') ?>">
                                     <i class="fas fa-trophy"></i>
                                     <span class="bot-line"></span>Validasi</a>
                             </li>
                             <li class="has-sub">
-                                <a href="#">
-                                    <i class="fas fa-copy"></i>
-                                    <span class="bot-line"></span>Pages</a>
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-copy"></i>Pages
+                                </a>
+                               <ul class="header3-sub-list list-unstyled">
+                                    <li>
+                                        <a href="<?= base_url('inspeksi/apar') ?>">Apar</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url('inspeksi/hydrant') ?>">Hydrant</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url('inspeksi/fire') ?>">Fire Alarm</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url('inspeksi/p3k') ?>">P3K</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= base_url('inspeksi/shk') ?>">SHK</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="has-sub">
                                 <a href="#">
@@ -132,36 +150,36 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                            <a class="js-arrow" href="<?= base_url('home') ?>">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="chart.html">
+                            <a href="<?= base_url('home/jadwal') ?>">
                                 <i class="fas fa-chart-bar"></i>Jadwal</a>
                         </li>
                         <li>
-                            <a href="table.html">
+                            <a href="<?= base_url('inspeksi') ?>">
                                 <i class="fas fa-table"></i>Validasi</a>
                         </li>
                         <li>
-                            <a href="form.html">
-                                <i class="far fa-check-square"></i>Forms</a>
+                            <a href="<?= base_url('inspeksi/apar') ?>">
+                                <i class="far fa-check-square"></i>Apar</a>
                         </li>
                         <li>
-                            <a href="calendar.html">
-                                <i class="fas fa-calendar-alt"></i>Calendar</a>
+                            <a href="<?= base_url('inspeksi/hydrant') ?>">
+                                <i class="fas fa-calendar-alt"></i>Hydrant</a>
                         </li>
                         <li>
-                            <a href="map.html">
-                                <i class="fas fa-map-marker-alt"></i>Maps</a>
+                            <a href="<?= base_url('inspeksi/p3k') ?>">
+                                <i class="fas fa-map-marker-alt"></i>P3k</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-copy"></i>Pages</a>
+                            <a class="js-arrow" href="<?= base_url('inspeksi/fire') ?>">
+                                <i class="fas fa-copy"></i>Fire Alarm</a>
                         </li>
                         <li class="has-sub">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-desktop"></i>UI Elements</a>
+                            <a class="js-arrow" href="<?= base_url('inspeksi/shk') ?>">
+                                <i class="fas fa-desktop"></i>SHK</a>
                         </li>
                     </ul>
                 </div>
@@ -172,7 +190,7 @@
                 <div class="account-wrap">
                     <div class="account-item account-item--style2 clearfix js-item-menu">
                         <div class="image">
-                            <img src="<?=base_url()?>assets/images/icon/avatar-01.jpg" alt="John Doe" />
+                            <img src="<?= base_url() ?>assets/images/icon/avatar-01.jpg" alt="John Doe" />
                         </div>
                         <div class="content">
                             <a class="js-acc-btn" href="#">john doe</a>
@@ -181,7 +199,7 @@
                             <div class="info clearfix">
                                 <div class="image">
                                     <a href="#">
-                                        <img src="<?=base_url()?>assets/images/icon/avatar-01.jpg" alt="John Doe" />
+                                        <img src="<?= base_url() ?>assets/images/icon/avatar-01.jpg" alt="John Doe" />
                                     </a>
                                 </div>
                                 <div class="content">
@@ -192,7 +210,7 @@
                                 </div>
                             </div>
                             <div class="account-dropdown__footer">
-                                <a href="<?=base_url('login/logout')?>">
+                                <a href="<?= base_url('login/logout') ?>">
                                     <i class="zmdi zmdi-power"></i>Logout</a>
                             </div>
                         </div>
