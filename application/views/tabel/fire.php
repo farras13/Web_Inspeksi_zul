@@ -1,3 +1,4 @@
+<?php $x = $this->session->userdata('user_login'); ?>
 <div class="main-content">
     <div class="section__content section__content--p30">
         <div class="container-fluid">
@@ -27,16 +28,18 @@
                                 <i class="zmdi zmdi-filter-list"></i>filters</button>
                         </div>
                         <div class="table-data__tool-right">
-                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                <i class="zmdi zmdi-plus"></i>add item</button>
-                            <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                                <select class="js-select2" name="type">
-                                    <option selected="selected">Export</option>
-                                    <option value="">Option 1</option>
-                                    <option value="">Option 2</option>
-                                </select>
-                                <div class="dropDownSelect2"></div>
-                            </div>
+                            <?php if ($x['level'] == 1) { ?>
+                                <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                    <i class="zmdi zmdi-plus"></i>add item</button>
+                                <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                    <select class="js-select2" name="type">
+                                        <option selected="selected">Export</option>
+                                        <option value="">Option 1</option>
+                                        <option value="">Option 2</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="table-responsive table-responsive-data2">
@@ -80,22 +83,24 @@
                                         <td><?= $a->kondisi_peralatan; ?></td>
                                         <td><?= $a->keterangan; ?></td>
                                         <td><?= $a->petugas; ?> / <?= date('d-m-Y', strtotime($a->tanggal_inspeksi)); ?></td>
-                                        <td>
-                                            <div class="table-data-feature">
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                    <i class="zmdi zmdi-mail-send"></i>
-                                                </button>
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                    <a href="<?= base_url('inspeksi/edit_fire/') . $a->id_fa; ?>"> <i class="zmdi zmdi-edit"></i></a>
-                                                </button>
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                    <a href="<?= base_url('inspeksi/delfire/') . $a->id_fa; ?>"><i class="zmdi zmdi-delete"></i></a>
-                                                </button>
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                    <i class="zmdi zmdi-more"></i>
-                                                </button>
-                                            </div>
-                                        </td>
+                                        <?php if ($x['level'] != 0) { ?>
+                                            <td>
+                                                <div class="table-data-feature">
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                                        <i class="zmdi zmdi-mail-send"></i>
+                                                    </button>
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <a href="<?= base_url('inspeksi/edit_fire/') . $a->id_fa; ?>"> <i class="zmdi zmdi-edit"></i></a>
+                                                    </button>
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <a href="<?= base_url('inspeksi/delfire/') . $a->id_fa; ?>"><i class="zmdi zmdi-delete"></i></a>
+                                                    </button>
+                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                                        <i class="zmdi zmdi-more"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
                                     <tr class="spacer"></tr>
                                 <?php $i++;

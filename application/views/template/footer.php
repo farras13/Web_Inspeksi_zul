@@ -96,6 +96,7 @@
     $('#inspeksi').on('change', function() {
       var a = $(this).val();
       if (a == "P3K") {
+        $('#harian').hide();
         $('#P3K').show();
         $('#Apar').hide();
         $('#FireAlarm').hide();
@@ -103,6 +104,7 @@
         $('#SHK').hide();
 
       } else if (a == "Apar") {
+        $('#harian').hide();
         $('#P3K').hide();
         $('#Apar').show();
         $('#FireAlarm').hide();
@@ -110,6 +112,7 @@
         $('#SHK').hide();
 
       }else if (a == "FireAlarm") {
+        $('#harian').hide();
         $('#P3K').hide();
         $('#Apar').hide();
         $('#FireAlarm').show();
@@ -117,6 +120,7 @@
         $('#SHK').hide();
 
       }else if (a == "Hidran") {
+        $('#harian').hide();
         $('#P3K').hide();
         $('#Apar').hide();
         $('#FireAlarm').hide();
@@ -124,12 +128,14 @@
         $('#SHK').hide();
 
       }else if (a == "SHK") {
+        $('#harian').hide();
         $('#P3K').hide();
         $('#Apar').hide();
         $('#FireAlarm').hide();
         $('#Hidran').hide();
         $('#SHK').show();
       }else {
+        $('#harian').show();
         $('#P3K').hide();
         $('#Apar').hide();
         $('#FireAlarm').hide();

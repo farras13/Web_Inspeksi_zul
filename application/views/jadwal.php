@@ -27,8 +27,9 @@
                             </div>
                             <button class="au-btn-filter">
                                 <i class="zmdi zmdi-filter-list"></i>filters</button>
-                            </form>
+                            </form>                        
                         </div>
+                        <?php $a = $this->session->userdata('user_login'); if($a['level']==0){?>
                         <div class="table-data__tool-right">
                             <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#newSubMenuModal">
                                 <i class="zmdi zmdi-plus"></i>add item</button>
@@ -41,6 +42,7 @@
                                 <div class="dropDownSelect2"></div>
                             </div>
                         </div>
+                        <?php } ?>
                     </div>
                     <?php if ($tbl != null) : ?>
                         <div class="table-responsive table-responsive-data2">
@@ -60,32 +62,29 @@
                                 <tr class="tr-shadow">
                                     <td><?= $n; ?></td>
                                     <td><?= $t->keterangan; ?></td>
-                                    <!-- <td>
-                                    <?php foreach($pj as $p): if($t->id_jadwal == $p->id_jadwal):?>
-                                        <span class="block-email"><?= $p->nama; ?></span>
-                                    <?php endif; endforeach; ?>
-                                    </td> -->
-                                    <!-- <td class="desc">Samsung S8 Black</td> -->
-                                    <td class="desc"><?= $t->jadwal; ?></td>
+                                  
+                                    <td class="desc"><?= date('d M Y',strtotime( $t->jadwal)); ?></td>
                                     <td>
-                                        <span class="status--process">Processed</span>
+                                        <?php if(date('Y-m-d') > $t->jadwal) : ?>
+                                            <span class="status--process">Expired</span>
+                                        <?php else:  ?>
+                                            <span class="status--process">Processed</span>
+                                        <?php endif; ?>
                                     </td>
+                                    <?php if($a['level']==0){?>
                                     <td>
                                         <div class="table-data-feature">
-                                            <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                <i class="zmdi zmdi-mail-send"></i>
-                                            </button> -->
+                                          
                                             <button class="item" data-toggle="modal" data-placement="top" title="Edit" data-target="#edtModal<?=$t->id_jadwal;?>">
                                                 <i class="zmdi zmdi-edit"></i>
                                             </button>
                                             <a href="<?= base_url('Home/del_jdl/').$t->id_jadwal; ?>" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                 <i class="zmdi zmdi-delete"></i>
                                             </a>
-                                            <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                <i class="zmdi zmdi-more"></i>
-                                            </button> -->
+                                         
                                         </div>
                                     </td>
+                                    <?php } ?>
                                 </tr>
                                 <?php $n++; endforeach; ?>
                             </tbody>
@@ -109,10 +108,10 @@
                             <form action="<?php echo base_url('Home/ins_jdl'); ?>" method="post">
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <input type="date" class="form-control" id="tgl" name="tgl"  min="<?= date('Y-m-d'); ?>">
+                                        <input type="date" class="form-control" id="tgl" name="tgl"  min="<?= date('Y-m-d'); ?>" required>
                                     </div>
                                     <div class="form-group">
-                                        <select name="jdl" id="jdl" class="form-control">
+                                        <select name="jdl" id="jdl" class="form-control" required>
                                             <option value="">Select Inspeksi</option>
                                             <option value="Apar">Apar</option>
                                             <option value="Detektor">Detektor</option>
@@ -120,9 +119,6 @@
                                             <option value="P3K">P3K</option>
                                             <option value="SHK">SHK</option>
                                         </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Penanggung Jawab">
                                     </div>
                                 </div>
                                 <div class="modal-footer">

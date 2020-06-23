@@ -8,6 +8,11 @@ class Model extends CI_Model {
     {
         return $this->db->get($t);
     }
+    public function getDataO($t)
+    {
+        $this->db->order_by('jadwal', 'desc');
+        return $this->db->get($t);
+    }
     public function getDataId($t,$w)
     {
         $this->db->where($w);

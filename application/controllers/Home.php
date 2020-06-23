@@ -27,7 +27,7 @@ class Home extends CI_Controller
 
 	public function Jadwal()
 	{
-		$data['tbl'] = $this->m->getData('jadwal')->result();
+		$data['tbl'] = $this->m->getDataO('jadwal')->result();
 		// $data['pj'] = $this->m->getData('penanggung_jawab')->result();
 		$this->load->view('template/header');
 		$this->load->view('jadwal', $data);
@@ -71,7 +71,6 @@ class Home extends CI_Controller
 	public function del_jdl()
 	{
 		$a = $this->uri->segment(3);
-		$this->m->delData('penanggung_jawab', ['id_jadwal' => $a]);
 		$this->m->delData('jadwal', ['id_jadwal' => $a]);
 		redirect('Home/jadwal','refresh');		
 	}

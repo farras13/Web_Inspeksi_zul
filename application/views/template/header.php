@@ -39,11 +39,12 @@
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
+        <?php $a = $this->session->userdata('user_login'); ?>
         <header class="header-desktop3 d-none d-lg-block">
             <div class="section__content section__content--p35">
                 <div class="header3-wrap">
                     <div class="header__logo">
-                        <a href="#">
+                        <a href="<?= base_url('home'); ?>">
                             <img src="<?= base_url() ?>assets/images/icon/logo1.png" alt="CoolAdmin" />
                         </a>
                     </div>
@@ -55,21 +56,28 @@
                                     <span class="bot-line"></span>
                                 </a>
                             </li>
+                            <?php if($a['level'] != 2): ?>
                             <li>
                                 <a href="<?= base_url('home/jadwal') ?>">
                                     <i class="fas fa-shopping-basket"></i>
                                     <span class="bot-line"></span>Jadwal</a>
                             </li>
-                            <li>
-                                <a href="<?= base_url('inspeksi') ?>">
-                                    <i class="fas fa-trophy"></i>
-                                    <span class="bot-line"></span>Validasi</a>
-                            </li>
+                            <?php endif; ?>
+                            <?php if ($a['level'] == 1) { ?>
+                                <li>
+                                    <a href="<?= base_url('inspeksi') ?>">
+                                        <i class="fas fa-trophy"></i>
+                                        <span class="bot-line"></span>Inspeksi</a>
+                                </li>
+                            <?php } ?>
                             <li class="has-sub">
                                 <a class="js-arrow" href="#">
                                     <i class="fas fa-copy"></i>Pages
                                 </a>
-                               <ul class="header3-sub-list list-unstyled">
+                                <ul class="header3-sub-list list-unstyled">
+                                    <li>
+                                        <a href="<?= base_url('inspeksi/harian') ?>">Harian</a>
+                                    </li>
                                     <li>
                                         <a href="<?= base_url('inspeksi/apar') ?>">Apar</a>
                                     </li>
@@ -87,11 +95,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="has-sub">
-                                <a href="#">
-                                    <i class="fas fa-desktop"></i>
-                                    <span class="bot-line"></span>UI Elements</a>
-                            </li>
                         </ul>
                     </div>
                     <div class="header__tool">
@@ -101,7 +104,8 @@
                                     <img src="<?= base_url() ?>assets/images/icon/avatar-01.jpg" alt="John Doe" />
                                 </div>
                                 <div class="content">
-                                    <a class="js-acc-btn" href="#">john doe</a>
+                                    <a class="js-acc-btn" href="#"><?php echo $a['username']; ?>
+                                    </a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
@@ -112,9 +116,10 @@
                                         </div>
                                         <div class="content">
                                             <h5 class="name">
-                                                <a href="#">john doe</a>
+                                                <a href="#"><?php echo $a['username'];
+                                                            ?></a>
                                             </h5>
-                                            <span class="email">johndoe@example.com</span>
+                                            <!-- <span class="email">johndoe@example.com</span> -->
                                         </div>
                                     </div>
                                     <div class="account-dropdown__footer">
@@ -135,7 +140,7 @@
             <div class="header-mobile__bar">
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
-                        <a class="logo" href="index.html">
+                        <a class="logo" href="<?= base_url('home'); ?>">
                             <img src="<?= base_url() ?>assets/images/icon/logo1.png" alt="CoolAdmin" />
                         </a>
                         <button class="hamburger hamburger--slider" type="button">
@@ -193,7 +198,7 @@
                             <img src="<?= base_url() ?>assets/images/icon/avatar-01.jpg" alt="John Doe" />
                         </div>
                         <div class="content">
-                            <a class="js-acc-btn" href="#">john doe</a>
+                            <a class="js-acc-btn" href="#"><?= $a['username']; ?></a>
                         </div>
                         <div class="account-dropdown js-dropdown">
                             <div class="info clearfix">
@@ -204,9 +209,9 @@
                                 </div>
                                 <div class="content">
                                     <h5 class="name">
-                                        <a href="#">john doe</a>
+                                        <a href="#"><?= $a['username']; ?></a>
                                     </h5>
-                                    <span class="email">johndoe@example.com</span>
+                                    <!-- <span class="email">johndoe@example.com</span> -->
                                 </div>
                             </div>
                             <div class="account-dropdown__footer">

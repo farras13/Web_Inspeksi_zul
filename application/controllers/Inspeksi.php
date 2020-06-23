@@ -20,11 +20,17 @@ class Inspeksi extends CI_Controller
 
     public function index()
     {
-        // $data['pk'] = ['kasa_steril','perban_5cm','perban_10cm','plester_1.25','plester_cepat','kapas','mitela','gunting','pentil','sarung_tangan','masker','pinset','senter','gelas','kantong_plastik','aquades','povidon_lodin','alkohol_70','buku_panduan','buku_catatan'];
-        // $data['pkd'] = ['Kasa steril','Perban 5cm','Perban 10cm','Plester 1.25','Plester cepat','Kapas','Mitela','Gunting','Pentil','Sarung tangan','Masker','Pinset','Senter','Gelas','Kantong plastik','Aquades','Povidon lodin','Alkohol 70','Buku panduan','Buku catatan'];
         $data['pkd'] = $this->m->getdata('list_p3k')->result();
         $this->load->view('template/header');
         $this->load->view('form', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function harian()
+    {
+        $data['sk'] = $this->m->getdata('harian')->result();
+        $this->load->view('template/header');
+        $this->load->view('tabel/harian', $data);
         $this->load->view('template/footer');
     }
 
@@ -68,6 +74,25 @@ class Inspeksi extends CI_Controller
         $this->load->view('template/header');
         $this->load->view('tabel/fire', $data);
         $this->load->view('template/footer');
+    }
+    public function ins_harian()
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('pict')) {
+            $error = $this->upload->display_errors();
+            echo $error;
+        } else {
+            $object = array(
+                'masalah' =>  $this->input->post('Kendala'),
+                'gambar' =>  $this->upload->data('file_name'),
+            );
+            $this->m->insData('harian', $object);
+            redirect('inspeksi', 'refresh');
+        }
     }
 
     public function ins_apar()
@@ -196,7 +221,14 @@ class Inspeksi extends CI_Controller
         $this->m->insData('cp_hydrant', $object);
         redirect('inspeksi', 'refresh');
     }
-
+    public function edit_harian($id)
+    {
+        $w = array('id_harian' => $id);
+        $data['sh'] = $this->m->getDataId('harian', $w)->result();
+        $this->load->view('template/header');
+        $this->load->view('edit/harian', $data);
+        $this->load->view('template/footer');
+    }
     public function edit_apar($id)
     {
         $w = array('id_apar' => $id);
@@ -244,7 +276,27 @@ class Inspeksi extends CI_Controller
     {
         $id = $this->input->post('id');
         $j = $this->input->post('jpos');
-        if ($j == "SHK") {
+        if ($j == "HARIAN") {
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('pict')) {
+                $w = array('id_harian' => $id);
+                $object = array( 'masalah' =>  $this->input->post('Kendala') );
+                $this->m->updData('harian', $object, $w);
+                redirect('inspeksi/harian', 'refresh');
+            } else {
+                $w = array('id_harian' => $id);
+                $object = array(
+                    'masalah' =>  $this->input->post('Kendala'),
+                    'gambar' =>  $this->upload->data('file_name')
+                );
+                $this->m->updData('harian', $object, $w);
+                redirect('inspeksi/harian', 'refresh');
+            }
+        }elseif ($j == "SHK") {
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
 
@@ -266,8 +318,7 @@ class Inspeksi extends CI_Controller
                     'problem' =>  $this->input->post('Kendala'),
                     'action'  =>  $this->input->post('Solusi'),
                     'picture' =>  $this->upload->data('file_name'),
-                    'petugas' =>  $this->input->post('Petugas'),
-                    'tanggal_shk' =>  date('Y-m-d H:i:s')
+                    'petugas' =>  $this->input->post('Petugas')
                 );
                 $this->m->updData('shk', $object, $w);
                 redirect('inspeksi/shk', 'refresh');
