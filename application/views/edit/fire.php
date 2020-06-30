@@ -14,7 +14,7 @@
                             </div>
                             <hr>
                             <?php foreach($fa as $a): ?>
-                            <form action="<?= base_url('inspeksi/updateData'); ?>" method="post" novalidate="novalidate">
+                            <form action="<?= base_url('inspeksi/updateData'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <input type="hidden" name="id" value="<?= $a->id_fa ?>">
                                     <input type="hidden" name="jpos" value="FIRE">
@@ -81,6 +81,10 @@
                                 <div class="form-group">
                                     <label for="Keterangan" class="control-label mb-1">Keterangan</label>
                                     <textarea name="Keterangan" id="Keterangan" rows="9" placeholder="Keterangan..." class="form-control" required><?= $a->keterangan ?></textarea>
+                                </div>
+                                <div class="row form-group">
+                                    <label for="pict" class="control-label mb-1">Photo</label>
+                                    <input id="pict" name="pict" type="file" class="form-control" accept="image/*">
                                 </div>
                                 <div>
                                     <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">

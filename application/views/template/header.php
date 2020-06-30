@@ -39,7 +39,7 @@
 <body class="animsition">
     <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
-        <?php $a = $this->session->userdata('user_login'); ?>
+        <?php $a = $this->session->userdata('datauser'); ?>
         <header class="header-desktop3 d-none d-lg-block">
             <div class="section__content section__content--p35">
                 <div class="header3-wrap">
@@ -56,12 +56,12 @@
                                     <span class="bot-line"></span>
                                 </a>
                             </li>
-                            <?php if($a['level'] != 2): ?>
-                            <li>
-                                <a href="<?= base_url('home/jadwal') ?>">
-                                    <i class="fas fa-shopping-basket"></i>
-                                    <span class="bot-line"></span>Jadwal</a>
-                            </li>
+                            <?php if ($a['level'] != 2) : ?>
+                                <li>
+                                    <a href="<?= base_url('home/jadwal') ?>">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span class="bot-line"></span>Jadwal</a>
+                                </li>
                             <?php endif; ?>
                             <?php if ($a['level'] == 1) { ?>
                                 <li>
@@ -95,6 +95,13 @@
                                     </li>
                                 </ul>
                             </li>
+                            <?php if ($a['level'] == 0) { ?>
+                                <li>
+                                    <a href="<?= base_url('home/user') ?>">
+                                        <i class="fas fa-user"></i>
+                                        <span class="bot-line"></span>User</a>
+                                </li>
+                            <?php } ?>
                         </ul>
                     </div>
                     <div class="header__tool">
@@ -158,34 +165,48 @@
                             <a class="js-arrow" href="<?= base_url('home') ?>">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
+                        <?php if ($a['level'] != 2) { ?>
+                            <li>
+                                <a href="<?= base_url('home/jadwal') ?>">
+                                    <i class="fas fa-calendar-alt"></i>Jadwal</a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($a['level'] == 1) { ?>
+                            <li>
+                                <a href="<?= base_url('inspeksi') ?>">
+                                    <i class="far fa-check-square"></i>Inspeksi</a>
+                            </li>
+                        <?php } ?>
                         <li>
-                            <a href="<?= base_url('home/jadwal') ?>">
-                                <i class="fas fa-chart-bar"></i>Jadwal</a>
-                        </li>
-                        <li>
-                            <a href="<?= base_url('inspeksi') ?>">
-                                <i class="fas fa-table"></i>Validasi</a>
+                            <a href="<?= base_url('inspeksi/harian') ?>">
+                                <i class="fas fa-table"></i>Harian</a>
                         </li>
                         <li>
                             <a href="<?= base_url('inspeksi/apar') ?>">
-                                <i class="far fa-check-square"></i>Apar</a>
+                                <i class="fas fa-table"></i>Apar</a>
                         </li>
                         <li>
                             <a href="<?= base_url('inspeksi/hydrant') ?>">
-                                <i class="fas fa-calendar-alt"></i>Hydrant</a>
+                                <i class="fas fa-table"></i>Hydrant</a>
                         </li>
                         <li>
                             <a href="<?= base_url('inspeksi/p3k') ?>">
-                                <i class="fas fa-map-marker-alt"></i>P3k</a>
+                                <i class="fas fa-table"></i>P3k</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="<?= base_url('inspeksi/fire') ?>">
-                                <i class="fas fa-copy"></i>Fire Alarm</a>
+                                <i class="fas fa-table"></i>Fire Alarm</a>
                         </li>
                         <li class="has-sub">
                             <a class="js-arrow" href="<?= base_url('inspeksi/shk') ?>">
-                                <i class="fas fa-desktop"></i>SHK</a>
+                                <i class="fas fa-table"></i>SHK</a>
                         </li>
+                        <?php if ($a['level'] == 0) { ?>
+                            <li>
+                                <a href="<?= base_url('home/user') ?>">
+                                    <i class="fas fa-user"></i>User</a>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
             </nav>

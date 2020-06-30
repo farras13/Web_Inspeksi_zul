@@ -1801,7 +1801,7 @@ section {
 }
 
 .header-mobile-2 {
-    background: #393939;
+    background: #fff;
     position: static;
 }
 
@@ -1814,15 +1814,15 @@ section {
 }
 
 .header-mobile-2.header-mobile .hamburger .hamburger-box .hamburger-inner {
-    background: #fff;
+    background: rgb(150, 148, 148);
 }
 
 .header-mobile-2.header-mobile .hamburger .hamburger-box .hamburger-inner::before {
-    background: #fff;
+    background: rgb(150, 148, 148);
 }
 
 .header-mobile-2.header-mobile .hamburger .hamburger-box .hamburger-inner::after {
-    background: #fff;
+    background: rgb(150, 148, 148);
 }
 
 .sub-header-mobile-2 {

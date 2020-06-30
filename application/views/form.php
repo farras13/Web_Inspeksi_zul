@@ -34,7 +34,7 @@
                                 <h3 class="text-center title-2">APAR INSPEKSI</h3>
                             </div>
                             <hr>
-                            <form action="<?= base_url('inspeksi/ins_apar'); ?>" method="post" novalidate="novalidate">
+                            <form action="<?= base_url('inspeksi/ins_apar'); ?>" method="post" enctype="multipart/form-data" novalidate="novalidate">
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="Petugas" class="control-label mb-1">Petugas</label>
@@ -52,15 +52,15 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="Refilling" class="control-label mb-1">Refilling</label>
-                                            <input id="Refilling" name="Refilling" type="date" class="form-control Refilling" data-val="true">
-                                            <span class="help-block" data-valmsg-for="Refilling" data-valmsg-replace="true"></span>
+                                            <input id="Refilling" name="Refilling" type="date" class="form-control Refilling" data-val="true" required>
+                                            <!-- <span class="help-block" data-valmsg-for="Refilling" data-valmsg-replace="true"></span> -->
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="berlaku" class="control-label mb-1">Masa berlaku</label>
-                                            <input id="berlaku" name="berlaku" type="date" class="form-control berlaku" data-val="true">
-                                            <span class="help-block" data-valmsg-for="berlaku" data-valmsg-replace="true"></span>
+                                            <input id="berlaku" name="berlaku" type="date" class="form-control berlaku" data-val="true" required>
+                                            <!-- <span class="help-block" data-valmsg-for="berlaku" data-valmsg-replace="true"></span> -->
                                         </div>
                                     </div>
                                 </div>
@@ -68,15 +68,15 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="Tabung" class="control-label mb-1">Kondisi Tabung</label>
-                                            <input id="Tabung" name="Tabung" type="text" class="form-control Tabung" data-val="true">
-                                            <span class="help-block" data-valmsg-for="Tabung" data-valmsg-replace="true"></span>
+                                            <input id="Tabung" name="Tabung" type="text" class="form-control Tabung" data-val="true" required>
+                                            <!-- <span class="help-block" data-valmsg-for="Tabung" data-valmsg-replace="true"></span> -->
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="Hose" class="control-label mb-1">Hose</label>
-                                            <input id="Hose" name="Hose" type="text" class="form-control Hose" data-val="true">
-                                            <span class="help-block" data-valmsg-for="Hose" data-valmsg-replace="true"></span>
+                                            <input id="Hose" name="Hose" type="text" class="form-control Hose" data-val="true" required>
+                                            <!-- <span class="help-block" data-valmsg-for="Hose" data-valmsg-replace="true"></span> -->
                                         </div>
                                     </div>
                                 </div>
@@ -84,22 +84,26 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="Pen" class="control-label mb-1">Pen Pengaman</label>
-                                            <input id="Pen" name="Pen" type="text" class="form-control Pen">
-                                            <span class="help-block" data-valmsg-for="Pen" data-valmsg-replace="true"></span>
+                                            <input id="Pen" name="Pen" type="text" class="form-control Pen" required>
+                                            <!-- <span class="help-block" data-valmsg-for="Pen" data-valmsg-replace="true"></span> -->
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <label for="Segel" class="control-label mb-1">Segel Pengaman</label>
                                         <div class="input-group">
-                                            <input id="Segel" name="Segel" type="text" class="form-control cc-cvc">
+                                            <input id="Segel" name="Segel" type="text" class="form-control cc-cvc" required>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <label for="Pressure" class="control-label mb-1">Pressure </label>
                                         <div class="input-group">
-                                            <input id="Pressure" name="Pressure" type="text" class="form-control cc-cvc">
+                                            <input id="Pressure" name="Pressure" type="text" class="form-control cc-cvc" required>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label for="pict" class="control-label mb-1">Photo</label>
+                                    <input id="pict" name="pict" type="file" class="form-control" accept="image/*" required>
                                 </div>
                                 <div>
                                     <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
@@ -124,7 +128,7 @@
                                 <h3 class="text-center title-2">Fire Alarm INSPEKSI</h3>
                             </div>
                             <hr>
-                            <form action="<?= base_url('inspeksi/ins_fire'); ?>" method="post" novalidate="novalidate">
+                            <form action="<?= base_url('inspeksi/ins_fire'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="Petugas" class="control-label mb-1">Petugas</label>
@@ -185,9 +189,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="row form-group">
                                     <label for="Keterangan" class="control-label mb-1">Keterangan</label>
                                     <textarea name="Keterangan" id="Keterangan" rows="9" placeholder="Keterangan..." class="form-control" required></textarea>
+                                </div>
+                                <div class="row form-group">
+                                    <label for="pict" class="control-label mb-1">Photo</label>
+                                    <input id="pict" name="pict" type="file" class="form-control" accept="image/*">
                                 </div>
                                 <div>
                                     <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
@@ -212,7 +220,7 @@
                                 <h3 class="text-center title-2">Hidran INSPEKSI</h3>
                             </div>
                             <hr>
-                            <form action="<?= base_url('inspeksi/ins_hydrant'); ?>" method="post">
+                            <form action="<?= base_url('inspeksi/ins_hydrant'); ?>" enctype="multipart/form-data" method="post">
                                 <div class="row form-group">
                                     <div class="col-6">
                                         <label for="Petugas" class="control-label mb-1">Petugas</label>
@@ -286,82 +294,9 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div>
-                                    <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-                                        <span id="payment-button-amount">Submit</span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong>Hidran</strong>
-                            <small> Form</small>
-                        </div>
-                        <div class="card-body card-block">
-                            <!-- <div class="card-title">
-                                <h3 class="text-center title-2">Hidran INSPEKSI</h3>
-                            </div>
-                            <hr> -->
-                            <form action="<?= base_url('inspeksi/ins_cph'); ?>" method="post">
-                                <div class="row form-group">
-                                    <div class="col-6">
-                                        <label for="Lokasi" class="control-label mb-1">Lokasi</label>
-                                        <div class="input-group">
-                                            <input id="Lokasi" name="Lokasi" type="text" class="form-control cc-cvc" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="Week" class="control-label mb-1">Week</label>
-                                        <div class="input-group">
-                                            <select name="Week" id="Week" class="form-control" required>
-                                                <option value="2"> Week 2</option>
-                                                <option value="4"> Week 4</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="form-group">
-                                    <label for="Petugas" class="control-label mb-1">Petugas</label>
-                                    <div class="input-group">
-                                        <input id="Petugas" name="Petugas" type="text" class="form-control cc-cvc" required>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row form-group">
-                                    <div class="form-group">
-                                        <label for="Pipe" class="control-label mb-1">Equipment</label>
-                                        <input id="Pipe" name="Pipe" type="text" class="form-control Equipment" data-val="true">
-                                        <span class="help-block" data-valmsg-for="Equipment" data-valmsg-replace="true"></span>
-                                    </div>
-                                </div>
-                                <div class="row form-group">                                    
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="Bensin" class="control-label mb-1">Bensin</label>
-                                            <input id="Bensin" name="Bensin" type="number" class="form-control Bensin" placeholder="liter" required>
-                                            <!-- <span class="help-block" data-valmsg-for="Bensin" data-valmsg-replace="true"></span> -->
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="Olie" class="control-label mb-1">Olie</label>
-                                            <input id="Olie" name="Olie" type="number" class="form-control Olie" placeholder="liter" required>
-                                            <!-- <span class="help-block" data-valmsg-for="berlaku" data-valmsg-replace="true"></span> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="form-group">
-                                            <label for="Jam" class="control-label mb-1">Total Jam </label>
-                                            <input id="Jam" name="Jam" type="number" class="form-control Refilling" required>
-                                            <!-- <span class="help-block" data-valmsg-for="Refilling" data-valmsg-replace="true"></span> -->
-                                        </div>
-                                    </div>
+                                    <label for="pict" class="control-label mb-1">Photo</label>
+                                    <input id="pict" name="pict" type="file" class="form-control" accept="image/*">
                                 </div>
                                 <div>
                                     <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
@@ -455,8 +390,13 @@
                             <hr>
                             <form action="<?= base_url('inspeksi/ins_shk'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-9"></div>
-                                    <div class="col-3">
+                                    <div class="col-6"> 
+                                        <label for="lokasi" class="control-label mb-1">Lokasi</label>
+                                        <div class="input-group">
+                                            <input id="lokasi" name="lokasi" type="text" class="form-control cc-cvc" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
                                         <label for="Petugas" class="control-label mb-1">Petugas</label>
                                         <div class="input-group">
                                             <input id="Petugas" name="Petugas" type="text" class="form-control cc-cvc" required>
@@ -486,7 +426,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row" id="harian">
                 <div class="col-lg-12">
                     <div class="card">

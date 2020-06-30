@@ -47,6 +47,18 @@
                             </a>
                         </div>
                         <div class="login-form">
+                            <?php if ($this->session->flashdata('flash-data')) :  ?>
+                                <div class="row mt-4">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                            <strong> <?= $this->session->flashdata('flash-data'); ?> </strong>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                             <form action="<?= base_url('Login/signin'); ?>" method="post">
                                 <div class="form-group">
                                     <label>Username</label>
@@ -61,7 +73,7 @@
                                         <!-- <input type="checkbox" name="remember">Remember Me -->
                                     </label>
                                     <label>
-                                        <a href="#">Forgotten Password?</a>
+                                        <a href="<?php $this->session->set_flashdata('flash-data', 'Hubungi Admin!');?>">Forgotten Password?</a>
                                     </label>
                                 </div>
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>

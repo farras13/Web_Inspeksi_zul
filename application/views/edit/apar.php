@@ -11,7 +11,7 @@
                             </div>
                             <hr>
                             <?php foreach($ap as $a): ?>
-                            <form action="<?= base_url('inspeksi/updateData'); ?>" method="post">
+                            <form action="<?= base_url('inspeksi/updateData'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="row">
                                     <input name="id" value="<?= $a->id_apar; ?>" type="text" hidden>
                                     <input name="jpos" value="APAR" type="text" hidden>
@@ -79,6 +79,10 @@
                                             <input id="Pressure" name="Pressure" type="text" class="form-control cc-cvc" value="<?= $a->pressure ?>">
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row form-group">
+                                    <label for="pict" class="control-label mb-1">Photo</label>
+                                    <input id="pict" name="pict" type="file" class="form-control" accept="image/*">
                                 </div>
                                 <div>
                                     <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">

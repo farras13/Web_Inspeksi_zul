@@ -24,10 +24,11 @@ class Login extends CI_Controller
         $check = $this->m->getDataId('user',$w)->row();
         if ($check != null) {
             $userdata = array('username' => $check->username, 'level' => $check->level);
-            $this->session->set_userdata('user_login', $userdata);
+            $this->session->set_userdata('datauser', $userdata);
+            $this->session->set_flashdata('flash-data', 'Demi kenyamanan pastikan membuka website ini dengan zoom 90% ke bawah atau dengan zoom 125% ke atas');
             redirect('Home', 'refresh');
         } else {
-            $this->session->set_flashdata('flash-data', 'username or Pass masih salah bre');
+            $this->session->set_flashdata('flash-data', 'Username / Password Salah');
             redirect('Login');
         }
     }

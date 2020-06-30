@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="copyright">
-            <p>Copyright © 2020 FG13. All rights reserved.</p>
-        </div>
+  <div class="col-md-12">
+    <div class="copyright">
+      <p>Copyright © 2020 FG13. All rights reserved.</p>
     </div>
+  </div>
 </div>
 </div>
 </div>
@@ -43,47 +43,47 @@
 <!-- Main JS-->
 <script src="<?= base_url() ?>assets/js/main.js"></script>
 <script type="text/javascript">
-    $(function() {
-        // for now, there is something adding a click handler to 'a'
-        var tues = moment().day(2).hour(19);
+  $(function() {
+    // for now, there is something adding a click handler to 'a'
+    var tues = moment().day(2).hour(19);
 
-        // build trival night events for example data
-        var events = [{
-                title: "Inspeksi Harian",
-                start: moment().format('YYYY-MM-DD'),
-                url: '#'
-            },
-            {
-                title: "Doctor Appt",
-                start: moment().hour(9).add(2, 'days').toISOString(),
-                url: '#'
-            }
+    // build trival night events for example data
+    var events = [{
+        title: "Inspeksi Harian",
+        start: moment().format('YYYY-MM-DD'),
+        url: '#'
+      },
+      {
+        title: "Doctor Appt",
+        start: moment().hour(9).add(2, 'days').toISOString(),
+        url: '#'
+      }
 
-        ];
+    ];
 
-        var trivia_nights = []
+    var trivia_nights = []
 
-        for (var i = 1; i <= 4; i++) {
-            var n = tues.clone().add(i, 'weeks');
-            console.log("isoString: " + n.toISOString());
-            trivia_nights.push({
-                title: 'Trival Night @ Pub XYZ',
-                start: n.toISOString(),
-                allDay: false,
-                url: '#'
-            });
-        }
+    for (var i = 1; i <= 4; i++) {
+      var n = tues.clone().add(i, 'weeks');
+      console.log("isoString: " + n.toISOString());
+      trivia_nights.push({
+        title: 'Trival Night @ Pub XYZ',
+        start: n.toISOString(),
+        allDay: false,
+        url: '#'
+      });
+    }
 
-        // setup a few events
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay,listWeek'
-            },
-            events: events.concat(trivia_nights)
-        });
+    // setup a few events
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listWeek'
+      },
+      events: events.concat(trivia_nights)
     });
+  });
 </script>
 <script>
   $(document).ready(function() {
@@ -92,6 +92,8 @@
     $('#FireAlarm').hide();
     $('#Hidran').hide();
     $('#SHK').hide();
+    $('#order').hide();
+    $('#bln').show();
 
     $('#inspeksi').on('change', function() {
       var a = $(this).val();
@@ -111,7 +113,7 @@
         $('#Hidran').hide();
         $('#SHK').hide();
 
-      }else if (a == "FireAlarm") {
+      } else if (a == "FireAlarm") {
         $('#harian').hide();
         $('#P3K').hide();
         $('#Apar').hide();
@@ -119,7 +121,7 @@
         $('#Hidran').hide();
         $('#SHK').hide();
 
-      }else if (a == "Hidran") {
+      } else if (a == "Hidran") {
         $('#harian').hide();
         $('#P3K').hide();
         $('#Apar').hide();
@@ -127,14 +129,14 @@
         $('#Hidran').show();
         $('#SHK').hide();
 
-      }else if (a == "SHK") {
+      } else if (a == "SHK") {
         $('#harian').hide();
         $('#P3K').hide();
         $('#Apar').hide();
         $('#FireAlarm').hide();
         $('#Hidran').hide();
         $('#SHK').show();
-      }else {
+      } else {
         $('#harian').show();
         $('#P3K').hide();
         $('#Apar').hide();
@@ -143,6 +145,29 @@
         $('#SHK').hide();
       }
     });
+
+    $('#filter').on('change', function() {
+      var x = $(this).val();
+      if (x == "b") {
+        $('#order').hide();
+        $('#bln').show();
+        document.getElementById("ord-select").disabled = true;
+        document.getElementById("time").disabled = false;
+       
+      } else {
+        $('#order').show();
+        $('#bln').hide();
+        document.getElementById("ord-select").disabled = false;
+        document.getElementById("time").disabled = true;
+      }
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+   
+
+    
   });
 </script>
 </body>
